@@ -11,7 +11,7 @@ class Game
   def request_guess
     begin
       display
-      print "Enter a letter, or type save to save progress:"
+      print "Enter a letter, or type save to save progress: "
       guess = gets.chomp
       return 'save' if guess == 'save'
       raise "Invalid input: #{guess}" unless /[[:alpha:]]/.match(guess) && guess.length == 1
@@ -22,7 +22,7 @@ class Game
       puts
       puts e.to_s.red
       retry
-    end  
+    end
   end
 
   def over?
@@ -46,10 +46,10 @@ class Game
       @guessed << char.green
       add_clue(char)
       puts
-      puts "Good guess".green
+      puts "Good guess!".green
     else
       @guessed << char.magenta
-      @guessed -= 1
+      @guesses -= 1
       puts
       puts "No luck!".magenta
     end
@@ -66,7 +66,7 @@ class Game
     elsif @guesses > 1
       puts "Incorrect guesses remaining: #{@guesses}".red
     else
-      puts "Last chance".red
+      puts "Last chance!".red
     end
     puts @key_clues.cyan
   end
@@ -82,9 +82,9 @@ class Game
     words = []
     dictionary.each_line do |l|
       l = l.chomp
-      if l.length <= 12 && 
-        l.length >= 5 && 
-        /[[:lower:]]/.match(l[0])
+      if l.length <= 12 &&
+         l.length >= 5 &&
+         /[[:lower:]]/.match(l[0])
         words << l
       end
     end
@@ -92,7 +92,6 @@ class Game
     words.sample
   end
 end
-
 
 
 
